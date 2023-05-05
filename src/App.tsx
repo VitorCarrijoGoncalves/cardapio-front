@@ -1,16 +1,23 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './App.css';
+import { Card } from './components/card/card';
+import { FoodData } from './interface/FoodData';
+import { useFoodData } from './hooks/useFoodData';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { data } = useFoodData();
 
   return (
     <div className="container">
       <h1>Cardápio</h1>
       <div className="card-grid">
-
+        {data?.map(foodData => 
+          <Card 
+            price={foodData.price} 
+            title={foodData.title} 
+            image={foodData.image}
+            />
+          )
+        }
 
       </div>
     </div>
