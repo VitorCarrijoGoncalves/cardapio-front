@@ -1,4 +1,4 @@
-import { useQuery } from "../../node_modules/@tanstack/react-query/build/lib/useQuery";
+import { useQuery } from "@tanstack/react-query";
 import axios, { Axios, AxiosPromise } from "../../node_modules/axios/index"
 import { FoodData } from "../interface/FoodData";
 
