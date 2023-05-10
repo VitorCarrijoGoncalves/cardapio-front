@@ -2,9 +2,16 @@ import './App.css';
 import { Card } from './components/card/card';
 import { FoodData } from './interface/FoodData';
 import { useFoodData } from './hooks/useFoodData';
+import { CreateModal } from './components/create-modal/create-modal';
+import { useState } from 'react';
 
 function App() {
   const { data } = useFoodData();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(prev => !prev)
+  }
 
   return (
     <div className="container">
@@ -16,9 +23,9 @@ function App() {
             title={foodData.title} 
             image={foodData.image}
             />
-          )
-        }
-
+          )}
+        {isModalOpen && <CreateModal/>}
+        <button onClick={handleOpenModal}>novo</button>
       </div>
     </div>
   )
