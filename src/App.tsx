@@ -6,7 +6,7 @@ import { CreateModal } from './components/create-modal/create-modal';
 import { useState } from 'react';
 
 function App() {
-  const { data } = useFoodData();
+  const { data, isLoading, isError } = useFoodData();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -17,13 +17,19 @@ function App() {
     <div className="container">
       <h1>Cardápio</h1>
       <div className="card-grid">
-        {data?.map(foodData => 
-          <Card 
-            price={foodData.price} 
-            title={foodData.title} 
-            image={foodData.image}
-            />
-          )}
+        {
+          !isLoading && <>
+            {data?.map(foodData => 
+              <Card 
+                price={foodData.price} 
+                title={foodData.title} 
+                image={foodData.image}
+              />
+            )}
+          </>
+        }
+        {isLoading && <p>carregando</p>}
+        {isError && <p>erro!</p>}
         {isModalOpen && <CreateModal closeModal={handleOpenModal}/>}
         <button onClick={handleOpenModal}>novo</button>
       </div>
